@@ -9,7 +9,6 @@ import { UpdateTaskComponent } from './update-task/update-task.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'employee', pathMatch: 'full' },
   { path: 'tasks', component: TaskListComponent },
   { path: 'addTask', component: CreateTaskComponent },
   { path: 'details/:taskId', component: TaskDetailsComponent },
@@ -18,7 +17,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    onSameUrlNavigation : "reload"
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

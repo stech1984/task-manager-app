@@ -4,7 +4,7 @@ import { Task } from "../task";
 
 import { Observable } from "rxjs";
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { NgFormSelectorWarning } from '@angular/forms';
 
 @Component({
@@ -23,13 +23,16 @@ export class TaskListComponent implements OnInit {
   searchByFromPriority : string;
   searchByToPriority : string;
 
-  constructor( private taskService : TaskService,private router : Router ) { }
+  constructor( private taskService : TaskService,private router : Router ) {
+   
+  }
 
   ngOnInit() {
+    console.log("ngOnInit");
     this.reloadData();  
   }
 
-  
+
 
   taskDetails(taskId : String){
     this.router.navigate(['details',taskId])
@@ -50,7 +53,7 @@ export class TaskListComponent implements OnInit {
 
   reloadData() {
     this.tasks = this.taskService.getTaskList();
-  }
+    }
 
   completeTask(taskId : String){
     this.taskService.completeTask(taskId).subscribe(
